@@ -21,3 +21,6 @@ benchmarks/graphs
 
 # output
 dist/
+
+# local JSON storage
+data/
