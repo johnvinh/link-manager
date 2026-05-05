@@ -8,4 +8,9 @@ export default defineConfig({
     react(),
     babel({ presets: [reactCompilerPreset()] })
   ],
+  server: {
+    proxy: {
+      '/links': 'http://localhost:3000',
+    },
+  },
 })
