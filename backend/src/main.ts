@@ -23,6 +23,22 @@ app.get("/links", async (req, res) => {
 
 app.post("/links", async (req, res) => {
   try {
+    const { url } = req.body;
+
+    // 1. Requirement check
+    if (!url) {
+      res.status(400).json({ error: "URL is required" });
+      return;
+    }
+
+    // 2. Format check
+    try {
+      new URL(url);
+    } catch (err) {
+      res.status(400).json({ error: "Invalid URL" });
+      return;
+    }
+
     const newLink = await createLink(req.body);
     res.status(201).json(newLink);
   } catch (err) {
